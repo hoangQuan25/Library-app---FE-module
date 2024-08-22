@@ -1,4 +1,10 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../../Auth/AuthContext'; // Import the useAuth hook
+
 export const Heroes = () => {
+  const { isAuthenticated } = useAuth(); // Get authentication status
+
   return (
     <div>
       <div className="d-none d-lg-block">
@@ -14,7 +20,15 @@ export const Heroes = () => {
                 Cho dù là để giải trí hay để tiếp thu kiến thức mới,
                 chúng tôi luôn có thể cung cấp những cuốn sách tốt nhất!
               </p>
-              <a className="btn btn-primary btn-lg main-color" href="#">Sign up</a>
+              {isAuthenticated ? (
+                <Link to="/search" className="btn btn-primary btn-lg main-color">
+                  Explore top books
+                </Link>
+              ) : (
+                <Link to="/login" className="btn btn-primary btn-lg main-color">
+                  Signup
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -49,7 +63,15 @@ export const Heroes = () => {
                 Cho dù là để giải trí hay để tiếp thu kiến thức mới,
                 chúng tôi luôn có thể cung cấp những cuốn sách tốt nhất!
               </p>
-              <a className="btn btn-primary btn-lg main-color" href="#">Sign up</a>
+              {isAuthenticated ? (
+                <Link to="/search" className="btn btn-primary btn-lg main-color">
+                  Explore top books
+                </Link>
+              ) : (
+                <Link to="/login" className="btn btn-primary btn-lg main-color">
+                  Signup
+                </Link>
+              )}
             </div>
           </div>
           <div className="m-2">
@@ -69,4 +91,4 @@ export const Heroes = () => {
       </div>
     </div>
   );
-}
+};
